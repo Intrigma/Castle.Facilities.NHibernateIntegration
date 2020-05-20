@@ -7,9 +7,8 @@
 				   service="NHibernate.IInterceptor, NHibernate" />
 	</components>
 	<facilities>
-		<facility id="nhibernatefacility"
-				  type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration"
-				  configurationBuilder="Castle.Facilities.NHibernateIntegration.Tests.TestConfigurationBuilder, Castle.Facilities.NHibernateIntegration.Tests">
+		<facility type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration"
+		          configurationBuilder="Castle.Facilities.NHibernateIntegration.Tests.TestConfigurationBuilder, Castle.Facilities.NHibernateIntegration.Tests">
 
 			<factory id="sessionFactory1">
 				<settings>

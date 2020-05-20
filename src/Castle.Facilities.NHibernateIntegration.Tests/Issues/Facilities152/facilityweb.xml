@@ -2,7 +2,7 @@
 
 <castle>
 	<facilities>
-		<facility id="nhibernatefacility"
+		<facility
 				  type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration"
 				  configurationBuilder="Castle.Facilities.NHibernateIntegration.Tests.TestConfigurationBuilder, Castle.Facilities.NHibernateIntegration.Tests"
 				  isWeb="true">

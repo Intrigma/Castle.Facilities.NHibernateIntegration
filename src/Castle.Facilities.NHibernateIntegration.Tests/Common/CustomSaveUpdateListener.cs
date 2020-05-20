@@ -17,12 +17,20 @@
 
 #endregion
 
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Castle.Facilities.NHibernateIntegration.Tests.Common
 {
 	using NHibernate.Event;
 
 	public class CustomSaveUpdateListener : NHibernate.Event.ISaveOrUpdateEventListener
 	{
+		public Task OnSaveOrUpdateAsync(SaveOrUpdateEvent @event, CancellationToken cancellationToken)
+		{
+			return Task.CompletedTask;
+		}
+
 		public void OnSaveOrUpdate(SaveOrUpdateEvent @event)
 		{
 		}

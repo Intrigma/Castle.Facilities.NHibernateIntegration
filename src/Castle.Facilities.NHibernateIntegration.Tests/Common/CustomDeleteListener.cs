@@ -18,6 +18,8 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Castle.Facilities.NHibernateIntegration.Tests.Common
 {
@@ -25,6 +27,16 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Common
 
 	public class CustomDeleteListener : NHibernate.Event.IDeleteEventListener
 	{
+		public Task OnDeleteAsync(DeleteEvent @event, CancellationToken cancellationToken)
+		{
+			return Task.CompletedTask;
+		}
+
+		public Task OnDeleteAsync(DeleteEvent @event, ISet<object> transientEntities, CancellationToken cancellationToken)
+		{
+			return Task.CompletedTask;
+		}
+
 		public void OnDelete(DeleteEvent @event)
 		{
 		}

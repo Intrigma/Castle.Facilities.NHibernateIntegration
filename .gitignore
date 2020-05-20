@@ -10,3 +10,6 @@ _ReSharper*
 * Thumbs.db
 lib/packages/
 .vs/
+/buildscripts/obj
+/buildscripts/bin
+/tools/Explicit.NuGet.Versions/obj

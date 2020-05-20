@@ -17,6 +17,11 @@
 
 #endregion
 
+using System.Data.Common;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Castle.Facilities.NHibernateIntegration
 {
 	using System;
@@ -77,6 +82,11 @@ namespace Castle.Facilities.NHibernateIntegration
 
 		#region ISession delegation
 
+		public IQueryable<T> Query<T>(string entityName)
+		{
+			return inner.Query<T>(entityName);
+		}
+
 		/// <summary>
 		/// Determines at which points Hibernate automatically flushes the session.
 		/// </summary>
@@ -108,7 +118,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// Applications are responsible for calling commit/rollback upon the connection before
 		/// closing the <c>ISession</c>.
 		/// </remarks>
-		public IDbConnection Connection
+		public DbConnection Connection
 		{
 			get { return inner.Connection; }
 		}
@@ -237,6 +247,245 @@ namespace Castle.Facilities.NHibernateIntegration
 			this.inner.SetReadOnly(entityOrProxy, readOnly);
 		}
 
+		public Task FlushAsync(CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.FlushAsync(cancellationToken);
+		}
+
+		public Task<bool> IsDirtyAsync(CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.IsDirtyAsync(cancellationToken);
+		}
+
+		public Task EvictAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.EvictAsync(obj, cancellationToken);
+		}
+
+		public Task<object> LoadAsync(Type theType, object id, LockMode lockMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync(theType, id, lockMode, cancellationToken);
+		}
+
+		public Task<object> LoadAsync(string entityName, object id, LockMode lockMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync(entityName, id, lockMode, cancellationToken);
+		}
+
+		public Task<object> LoadAsync(Type theType, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync(theType, id, cancellationToken);
+		}
+
+		public Task<T> LoadAsync<T>(object id, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync<T>(id, lockMode, cancellationToken);
+		}
+
+		public Task<T> LoadAsync<T>(object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync<T>(id, cancellationToken);
+		}
+
+		public Task<object> LoadAsync(string entityName, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync(entityName, id, cancellationToken);
+		}
+
+		public Task LoadAsync(object obj, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LoadAsync(obj, id, cancellationToken);
+		}
+
+		public Task ReplicateAsync(object obj, ReplicationMode replicationMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.ReplicateAsync(obj, replicationMode, cancellationToken);
+		}
+
+		public Task ReplicateAsync(string entityName, object obj, ReplicationMode replicationMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.ReplicateAsync(entityName, obj, replicationMode, cancellationToken);
+		}
+
+		public Task<object> SaveAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveAsync(obj, cancellationToken);
+		}
+
+		public Task SaveAsync(object obj, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveAsync(obj, id, cancellationToken);
+		}
+
+		public Task<object> SaveAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task SaveAsync(string entityName, object obj, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveAsync(entityName, obj, id, cancellationToken);
+		}
+
+		public Task SaveOrUpdateAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveOrUpdateAsync(obj, cancellationToken);
+		}
+
+		public Task SaveOrUpdateAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveOrUpdateAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task SaveOrUpdateAsync(string entityName, object obj, object id,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.SaveOrUpdateAsync(entityName, obj, id, cancellationToken);
+		}
+
+		public Task UpdateAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.UpdateAsync(obj, cancellationToken);
+		}
+
+		public Task UpdateAsync(object obj, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.UpdateAsync(obj, id, cancellationToken);
+		}
+
+		public Task UpdateAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.UpdateAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task UpdateAsync(string entityName, object obj, object id,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.UpdateAsync(entityName, obj, id, cancellationToken);
+		}
+
+		public Task<object> MergeAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.MergeAsync(obj, cancellationToken);
+		}
+
+		public Task<object> MergeAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.MergeAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task<T> MergeAsync<T>(T entity, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		{
+			return inner.MergeAsync(entity, cancellationToken);
+		}
+
+		public Task<T> MergeAsync<T>(string entityName, T entity, CancellationToken cancellationToken = new CancellationToken()) where T : class
+		{
+			return inner.MergeAsync(entityName, entity, cancellationToken);
+		}
+
+		public Task PersistAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.PersistAsync(obj, cancellationToken);
+		}
+
+		public Task PersistAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.PersistAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task DeleteAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.DeleteAsync(obj, cancellationToken);
+		}
+
+		public Task DeleteAsync(string entityName, object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.DeleteAsync(entityName, obj, cancellationToken);
+		}
+
+		public Task<int> DeleteAsync(string query, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.DeleteAsync(query, cancellationToken);
+		}
+
+		public Task<int> DeleteAsync(string query, object value, IType type, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.DeleteAsync(query, value, type, cancellationToken);
+		}
+
+		public Task<int> DeleteAsync(string query, object[] values, IType[] types,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.DeleteAsync(query, values, types, cancellationToken);
+		}
+
+		public Task LockAsync(object obj, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LockAsync(obj, lockMode, cancellationToken);
+		}
+
+		public Task LockAsync(string entityName, object obj, LockMode lockMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.LockAsync(entityName, obj, lockMode, cancellationToken);
+		}
+
+		public Task RefreshAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.RefreshAsync(obj, cancellationToken);
+		}
+
+		public Task RefreshAsync(object obj, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.RefreshAsync(obj, lockMode, cancellationToken);
+		}
+
+		public Task<IQuery> CreateFilterAsync(object collection, string queryString,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.CreateFilterAsync(collection, queryString, cancellationToken);
+		}
+
+		public Task<object> GetAsync(Type clazz, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetAsync(clazz, id, cancellationToken);
+		}
+
+		public Task<object> GetAsync(Type clazz, object id, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetAsync(clazz, id, lockMode, cancellationToken);
+		}
+
+		public Task<object> GetAsync(string entityName, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetAsync(entityName, id, cancellationToken);
+		}
+
+		public Task<T> GetAsync<T>(object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetAsync<T>(id, cancellationToken);
+		}
+
+		public Task<T> GetAsync<T>(object id, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetAsync<T>(id, lockMode, cancellationToken);
+		}
+
+		public Task<string> GetEntityNameAsync(object obj, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return inner.GetEntityNameAsync(obj, cancellationToken);
+		}
+
+		public ISharedSessionBuilder SessionWithOptions()
+		{
+			return inner.SessionWithOptions();
+		}
+
 		/// <summary>
 		/// Force the <c>ISession</c> to flush.
 		/// </summary>
@@ -261,7 +510,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// pool. Otherwise return it to the application. This is used by applications which require
 		/// long transactions.
 		/// </remarks>
-		public IDbConnection Disconnect()
+		public DbConnection Disconnect()
 		{
 			return inner.Disconnect();
 		}
@@ -282,7 +531,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// </summary>
 		/// <param name="connection">An ADO.NET connection</param>
 		/// <remarks>This is used by applications which require long transactions</remarks>
-		public void Reconnect(IDbConnection connection)
+		public void Reconnect(DbConnection connection)
 		{
 			inner.Reconnect(connection);
 		}
@@ -465,9 +714,15 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// </summary>
 		/// <param name="entityMode">The entity mode to use for the new session.</param>
 		/// <returns>The new session</returns>
+		[Obsolete]
 		public ISession GetSession(EntityMode entityMode)
 		{
 			return inner.GetSession(entityMode);
+		}
+
+		public IQueryable<T> Query<T>()
+		{
+			return inner.Query<T>();
 		}
 
 		/// <summary> 
@@ -549,6 +804,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// a list of all the results of all the queries.
 		/// Note that each query result is itself usually a list.
 		/// </returns>
+		[Obsolete]
 		public IMultiQuery CreateMultiQuery()
 		{
 			return inner.CreateMultiQuery();
@@ -811,37 +1067,6 @@ namespace Castle.Facilities.NHibernateIntegration
 		}
 
 		/// <summary>
-		/// Copy the state of the given object onto the persistent object with the same
-		/// identifier. If there is no persistent instance currently associated with
-		/// the session, it will be loaded. Return the persistent instance. If the
-		/// given instance is unsaved or does not exist in the database, save it and
-		/// return it as a newly persistent instance. Otherwise, the given instance
-		/// does not become associated with the session.
-		/// </summary>
-		/// <param name="obj">a transient instance with state to be copied</param>
-		/// <returns>an updated persistent instance</returns>
-		public object SaveOrUpdateCopy(object obj)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
-		/// Copy the state of the given object onto the persistent object with the
-		/// given identifier. If there is no persistent instance currently associated
-		/// with the session, it will be loaded. Return the persistent instance. If
-		/// there is no database row with the given identifier, save the given instance
-		/// and return it as a newly persistent instance. Otherwise, the given instance
-		/// does not become associated with the session.
-		/// </summary>
-		/// <param name="obj">a persistent or transient instance with state to be copied</param>
-		/// <param name="id">the identifier of the instance to copy to</param>
-		/// <returns>an updated persistent instance</returns>
-		public object SaveOrUpdateCopy(object obj, object id)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
 		/// Remove a persistent instance from the datastore.
 		/// </summary>
 		/// <param name="obj">The instance to be removed</param>
@@ -1075,6 +1300,11 @@ namespace Castle.Facilities.NHibernateIntegration
 			return inner.BeginTransaction(isolationLevel);
 		}
 
+		public void JoinTransaction()
+		{
+			inner.JoinTransaction();
+		}
+
 		/// <summary>
 		/// Creates a new <c>Criteria</c> for the entity class.
 		/// </summary>
@@ -1236,39 +1466,6 @@ namespace Castle.Facilities.NHibernateIntegration
 		}
 
 		/// <summary>
-		/// Create a new instance of <c>IQuery</c> for the given SQL string.
-		/// </summary>
-		/// <param name="sql">a query expressed in SQL</param>
-		/// <param name="returnAlias">a table alias that appears inside <c>{}</c> in the SQL string</param>
-		/// <param name="returnClass">the returned persistent class</param>
-		/// <returns>
-		/// An <see cref="T:NHibernate.IQuery"/> from the SQL string
-		/// </returns>
-		public IQuery CreateSQLQuery(string sql, string returnAlias, Type returnClass)
-		{
-			return inner.CreateSQLQuery(sql).AddEntity(returnAlias, returnClass);
-		}
-
-		/// <summary>
-		/// Create a new instance of <see cref="T:NHibernate.IQuery"/> for the given SQL string.
-		/// </summary>
-		/// <param name="sql">a query expressed in SQL</param>
-		/// <param name="returnAliases">an array of table aliases that appear inside <c>{}</c> in the SQL string</param>
-		/// <param name="returnClasses">the returned persistent classes</param>
-		/// <returns>
-		/// An <see cref="T:NHibernate.IQuery"/> from the SQL string
-		/// </returns>
-		public IQuery CreateSQLQuery(string sql, string[] returnAliases, Type[] returnClasses)
-		{
-			ISQLQuery query = inner.CreateSQLQuery(sql);
-			for (int i = 0; i < returnAliases.Length; i++)
-			{
-				query.AddEntity(returnAliases[i], returnClasses[i]);
-			}
-			return query;
-		}
-
-		/// <summary>
 		/// Completely clear the session. Evict all loaded instances and cancel all pending
 		/// saves, updates and deletions. Do not close open enumerables or instances of
 		/// <c>ScrollableResults</c>.
@@ -1288,7 +1485,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// It is not strictly necessary to <c>Close()</c> the <c>ISession</c> but you must
 		/// at least <c>Disconnect()</c> it.
 		/// </remarks>
-		public IDbConnection Close()
+		public DbConnection Close()
 		{
 			return DoClose(true);
 		}
@@ -1319,6 +1516,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// of all the criterias.
 		/// </summary>
 		/// <returns></returns>
+		[Obsolete]
 		public IMultiCriteria CreateMultiCriteria()
 		{
 			return inner.CreateMultiCriteria();
@@ -1346,16 +1544,6 @@ namespace Castle.Facilities.NHibernateIntegration
 		{
 			get { return inner.Statistics; }
 		}
-
-		/// <summary>
-		/// Gets the active entity mode.
-		/// </summary>
-		/// <value>The active entity mode.</value>
-		public EntityMode ActiveEntityMode
-		{
-			get { return inner.ActiveEntityMode; }
-		}
-
 		#endregion
 
 		#region Dispose delegation
@@ -1375,7 +1563,7 @@ namespace Castle.Facilities.NHibernateIntegration
 		/// </summary>
 		/// <param name="closing">if set to <c>true</c> [closing].</param>
 		/// <returns></returns>
-		protected IDbConnection DoClose(bool closing)
+		protected DbConnection DoClose(bool closing)
 		{
 			if (disposed) return null;
 
@@ -1387,9 +1575,9 @@ namespace Castle.Facilities.NHibernateIntegration
 			return null;
 		}
 
-		internal IDbConnection InternalClose(bool closing)
+		internal DbConnection InternalClose(bool closing)
 		{
-			IDbConnection conn = null;
+			DbConnection conn = null;
 
 			sessionStore.Remove(this);
 

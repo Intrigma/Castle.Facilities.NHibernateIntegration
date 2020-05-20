@@ -17,6 +17,8 @@
 
 #endregion
 
+using System.Collections.Generic;
+
 namespace Castle.Facilities.NHibernateIntegration.Tests
 {
 	using System;
@@ -41,7 +43,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests
 			{
 				Blog blog = new Blog();
 				blog.Name = name;
-				blog.Items = new ArrayList();
+				blog.Items = new List<object>();
 
 				session.Save(blog);
 

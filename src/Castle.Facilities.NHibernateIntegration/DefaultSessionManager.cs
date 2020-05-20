@@ -333,13 +333,13 @@ namespace Castle.Facilities.NHibernateIntegration
 			{
 				IInterceptor interceptor = kernel.Resolve<IInterceptor>(aliasedInterceptorId);
 
-				session = sessionFactory.OpenSession(interceptor);
+				session = sessionFactory.WithOptions().Interceptor(interceptor).OpenSession();
 			}
 			else if (kernel.HasComponent(InterceptorName))
 			{
 				IInterceptor interceptor = kernel.Resolve<IInterceptor>(InterceptorName);
 
-				session = sessionFactory.OpenSession(interceptor);
+				session = sessionFactory.WithOptions().Interceptor(interceptor).OpenSession();
 			}
 			else
 			{

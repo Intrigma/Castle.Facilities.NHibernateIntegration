@@ -1,6 +1,6 @@
 <configuration>
 	<facilities>
-		<facility id="nhibernatefacility"
+		<facility
 				  type="Castle.Facilities.NHibernateIntegration.NHibernateFacility, Castle.Facilities.NHibernateIntegration"
 				  configurationBuilder="Castle.Facilities.NHibernateIntegration.Tests.Internals.CustomConfigurationBuilder, Castle.Facilities.NHibernateIntegration.Tests">
 

@@ -54,7 +54,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Common
 			return null;
 		}
 
-		public override object Instantiate(string clazz, EntityMode entityMode, object id)
+		public override object Instantiate(string clazz, object id)
 		{
 			instantiationCall = true;
 			return null;

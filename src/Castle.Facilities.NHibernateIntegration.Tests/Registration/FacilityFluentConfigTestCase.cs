@@ -26,7 +26,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Registration
             Assert.AreEqual(typeof(TestConfigurationBuilder), container.Resolve<IConfigurationBuilder>().GetType());
         }
 
-        [Test, Ignore]
+        [Test, Ignore("")]
         public void Should_override_DefaultConfigurationBuilder()
         {
             var file = "Castle.Facilities.NHibernateIntegration.Tests/MinimalConfiguration.xml";
@@ -39,7 +39,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Registration
             Assert.AreEqual(typeof(DummyConfigurationBuilder), container.Resolve<IConfigurationBuilder>().GetType());
         }
 
-		[Test, Ignore]
+		[Test, Ignore("")]
         public void Should_override_IsWeb()
         {
             var file = "Castle.Facilities.NHibernateIntegration.Tests/MinimalConfiguration.xml";
@@ -54,12 +54,12 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Registration
             Assert.IsInstanceOf(typeof(CallContextSessionStore), sessionStore);
         }
 
-        [Test, ExpectedException(typeof(FacilityException))]
+        [Test]
         public void Should_not_accept_non_implementors_of_IConfigurationBuilder_for_override()
         {
             var container = new WindsorContainer();
 
-            container.AddFacility<NHibernateFacility>(f => f.ConfigurationBuilder(GetType()));
+            Assert.Throws<FacilityException>(()=>container.AddFacility<NHibernateFacility>(f => f.ConfigurationBuilder(GetType())));
         }
     }
 

@@ -1,4 +1,9 @@
-﻿namespace Castle.Facilities.NHibernateIntegration
+﻿using System.Data.Common;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Castle.Facilities.NHibernateIntegration
 {
 	using System;
 	using System.Data;
@@ -57,6 +62,11 @@
 
 		#region IStatelessSession delegation
 
+		public IQueryable<T> Query<T>(string entityName)
+		{
+			return _innerSession.Query<T>(entityName);
+		}
+
 		/// <summary>
 		/// Returns the current ADO.NET connection associated with this instance.
 		/// </summary>
@@ -66,7 +76,7 @@
 		/// close the connection returned by this call. Otherwise, the
 		/// application should not close the connection.
 		/// </remarks>
-		public IDbConnection Connection
+		public DbConnection Connection
 		{
 			get { return this._innerSession.Connection; }
 		}
@@ -119,6 +129,11 @@
 		public ITransaction BeginTransaction(IsolationLevel isolationLevel)
 		{
 			return this._innerSession.BeginTransaction(isolationLevel);
+		}
+
+		public void JoinTransaction()
+		{
+			_innerSession.JoinTransaction();
 		}
 
 		/// <summary>
@@ -327,6 +342,78 @@
 			return this._innerSession.GetNamedQuery(queryName);
 		}
 
+		public Task<object> InsertAsync(object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.InsertAsync(entity, cancellationToken);
+		}
+
+		public Task<object> InsertAsync(string entityName, object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.InsertAsync(entityName, entity, cancellationToken);
+		}
+
+		public Task UpdateAsync(object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.UpdateAsync(entity, cancellationToken);
+		}
+
+		public Task UpdateAsync(string entityName, object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.UpdateAsync(entityName, entity, cancellationToken);
+		}
+
+		public Task DeleteAsync(object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.DeleteAsync(entity, cancellationToken);
+		}
+
+		public Task DeleteAsync(string entityName, object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.DeleteAsync(entityName, entity, cancellationToken);
+		}
+
+		public Task<object> GetAsync(string entityName, object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.GetAsync(entityName, id, cancellationToken);
+		}
+
+		public Task<T> GetAsync<T>(object id, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.GetAsync<T>(id, cancellationToken);
+		}
+
+		public Task<object> GetAsync(string entityName, object id, LockMode lockMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.GetAsync(entityName, id, lockMode, cancellationToken);
+		}
+
+		public Task<T> GetAsync<T>(object id, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.GetAsync<T>(id, lockMode, cancellationToken);
+		}
+
+		public Task RefreshAsync(object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.RefreshAsync(entity, cancellationToken);
+		}
+
+		public Task RefreshAsync(string entityName, object entity, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.RefreshAsync(entityName, entity, cancellationToken);
+		}
+
+		public Task RefreshAsync(object entity, LockMode lockMode, CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.RefreshAsync(entity, lockMode, cancellationToken);
+		}
+
+		public Task RefreshAsync(string entityName, object entity, LockMode lockMode,
+			CancellationToken cancellationToken = new CancellationToken())
+		{
+			return _innerSession.RefreshAsync(entityName, entity, lockMode, cancellationToken);
+		}
+
 		/// <summary>
 		/// Gets the stateless session implementation.
 		/// </summary>
@@ -441,6 +528,11 @@
 		public IStatelessSession SetBatchSize(int batchSize)
 		{
 			return this._innerSession.SetBatchSize(batchSize);
+		}
+
+		public IQueryable<T> Query<T>()
+		{
+			return _innerSession.Query<T>();
 		}
 
 		/// <summary>
