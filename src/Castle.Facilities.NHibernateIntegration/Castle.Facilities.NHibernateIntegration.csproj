@@ -14,21 +14,16 @@
 		<RootNamespace>Castle.Facilities.NHibernateIntegration</RootNamespace>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
-		<Version>5.2.7</Version>
+		<Version>5.2.7-intrigma</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Castle.Services.Transaction" Version="5.0.0-Intrigma" />
 		<PackageReference Include="Castle.Windsor" Version="5.0.0" />
 		<PackageReference Include="NHibernate" Version="5.2.7" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net461'">
 		<Reference Include="System.Transactions" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="Castle.Services.Transaction">
-	    <HintPath>..\..\lib\NET45\Castle.Services.Transaction.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 </Project>
