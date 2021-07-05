@@ -14,11 +14,11 @@
 		<RootNamespace>Castle.Facilities.NHibernateIntegration</RootNamespace>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
-		<Version>5.2.7-intrigma1</Version>
+		<Version>5.2.7-intrigma2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Castle.Services.Transaction" Version="4.1.0-Intrigma" />
+		<PackageReference Include="Castle.Services.Transaction" Version="5.1.1-Intrigma" />
 		<PackageReference Include="NHibernate" Version="5.2.7" />
 	</ItemGroup>
 
