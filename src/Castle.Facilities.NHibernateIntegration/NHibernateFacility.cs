@@ -590,14 +590,22 @@ namespace Castle.Facilities.NHibernateIntegration
         public Type GetSessionStoreType()
         {
 			// Default implementation
-			Type sessionStoreType = typeof (CallContextSessionStore);
+			Type sessionStoreType = null;
+#if NET48_OR_GREATER
+			sessionStoreType = typeof (CallContextSessionStore);
 
             if (isWeb)
 				sessionStoreType = typeof (WebSessionStore);
+#endif
 
 			if (customStore != null)
 			{
 			    sessionStoreType = customStore;
+			}
+
+			if (sessionStoreType == null)
+			{
+				throw new ConfigurationErrorsException($"Please, specify {nameof(customStore)}");
 			}
 
             return sessionStoreType;

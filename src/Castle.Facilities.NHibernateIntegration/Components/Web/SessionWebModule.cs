@@ -17,6 +17,7 @@
 
 #endregion
 
+#if NET48_OR_GREATER
 namespace Castle.Facilities.NHibernateIntegration.Components.Web
 {
 	using System;
@@ -113,3 +114,4 @@ namespace Castle.Facilities.NHibernateIntegration.Components.Web
 		}
 	}
 }
+#endif

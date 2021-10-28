@@ -23,7 +23,6 @@ namespace Castle.Facilities.NHibernateIntegration.SessionStores
 	using System.Collections;
 	using System.Collections.Specialized;
 	using System.Runtime.CompilerServices;
-	using System.Runtime.Remoting.Messaging;
 
 	/// <summary>
 	/// 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net48</TargetFrameworks>
+		<TargetFrameworks>net48;net5.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -14,7 +14,7 @@
 		<RootNamespace>Castle.Facilities.NHibernateIntegration</RootNamespace>
 		<AssemblyVersion>5.0.0.0</AssemblyVersion>
 		<FileVersion>5.0.0.0</FileVersion>
-		<Version>5.2.7-intrigma2</Version>
+		<Version>5.2.7-intrigma3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,7 +22,4 @@
 		<PackageReference Include="NHibernate" Version="5.2.7" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net48'">
-		<Reference Include="System.Transactions" />
-	</ItemGroup>
 </Project>

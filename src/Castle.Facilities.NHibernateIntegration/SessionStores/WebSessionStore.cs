@@ -17,6 +17,7 @@
 
 #endregion
 
+#if NET48_OR_GREATER
 namespace Castle.Facilities.NHibernateIntegration.SessionStores
 {
 	using System;
@@ -86,3 +87,4 @@ namespace Castle.Facilities.NHibernateIntegration.SessionStores
 		}
 	}
 }
+#endif
