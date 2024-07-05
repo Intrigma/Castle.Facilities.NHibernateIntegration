@@ -88,7 +88,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Transactions
 			{
 				foreach (var resource in e.FailedResources)
 				{
-					Console.WriteLine(resource.Second);
+					Console.WriteLine(resource.Item2);
 				}
 
 				throw;
@@ -154,7 +154,7 @@ namespace Castle.Facilities.NHibernateIntegration.Tests.Transactions
 			{
 				foreach (var resource in e.FailedResources)
 				{
-					Console.WriteLine(resource.Second);
+					Console.WriteLine(resource.Item2);
 				}
 
 				throw;
