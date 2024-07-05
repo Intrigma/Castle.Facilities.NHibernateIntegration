@@ -9,6 +9,7 @@ _ReSharper*
 *.cache
 * Thumbs.db
 lib/packages/
+.idea/
 .vs/
 /buildscripts/obj
 /buildscripts/bin
